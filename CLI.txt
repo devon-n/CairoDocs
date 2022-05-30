@@ -1,0 +1,33 @@
+VARIABLES
+Wallet
+    address: 
+    public key: 
+    hash: 
+
+Contract
+    address: 
+    hash: 
+
+User Auth Contract
+    address: 
+    hash: 
+
+
+INTERACTIONS
+
+starknet call \
+    --address ${CONTRACT_ADDRESS} \
+    --abi contract_abi.json \
+    --function get_balance
+
+
+starknet invoke \
+    --address ${CONTRACT_ADDRESS} \
+    --abi user_auth_abi.json \
+    --function increase_balance \
+    --inputs -1000
+
+starknet tx_status \
+    --hash TX_HASH \
+    --contracts ${CONTRACT_ADDRESS}:user_auth_compiled.json \
+    --error_message
